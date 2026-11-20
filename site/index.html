@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>소리종합건설 현장관리 시스템 (예시 데이터)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#16613f;--g2:#0e3b27;--g3:#1d7a50;--gl:#e7f3ec;--line:#e5e8eb;--tx:#1b2228;--sub:#6a7480;--bg:#f6f7f9;
+--blue:#2f6fdf;--bl:#eaf1fd;--org:#c27800;--ol:#fff3d9;--red:#c8372d;--rl:#fdecea;--pur:#7546c9;--pl:#f1eafc;--gray:#eef0f2}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--tx);background:var(--bg);font-size:14px;line-height:1.5}
+.side{position:fixed;left:0;top:0;bottom:0;width:236px;background:var(--g2);color:#d9e7df;display:flex;flex-direction:column;z-index:5}
+.brand{display:flex;gap:10px;align-items:center;padding:20px 18px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.logo{width:32px;height:32px;border-radius:8px;background:var(--g3);display:grid;place-items:center;color:#fff;font-weight:700}
+.brand b{display:block;color:#fff;font-size:14px}.brand small{font-size:11px;color:#8fc4a6}
+nav{padding:10px;flex:1;overflow:auto}
+nav .cap{font-size:11px;color:#7fa391;margin:14px 10px 6px}
+nav a{display:flex;align-items:center;gap:10px;text-decoration:none;padding:8px 10px;border-radius:8px;font-size:13.5px;color:#d9e7df;cursor:pointer}
+nav a:hover{background:rgba(255,255,255,.06)}
+nav a.on{background:rgba(255,255,255,.1);color:#fff;font-weight:500;box-shadow:inset 3px 0 0 #4fc98a}
+nav a .ic{width:18px;text-align:center;opacity:.85}
+nav a .badge{margin-left:auto;background:#f5a300;color:#3a2600;font-size:11px;border-radius:9px;padding:0 7px;font-weight:700}
+.foot{padding:12px 16px;border-top:1px solid rgba(255,255,255,.1);font-size:11.5px;color:#8fb3a0}
+.foot b{color:#fff;font-weight:500;display:block;font-size:13px}
+main{margin-left:236px;padding:28px 34px 70px;max-width:1560px}
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.date{color:var(--sub);font-size:13px}
+h1{font-size:23px;margin:2px 0 0}
+h1 small{font-size:13px;color:var(--sub);font-weight:400;margin-left:8px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 14px;font:inherit;font-size:13px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;color:var(--tx)}
+.btn.pri{background:var(--g);color:#fff;border-color:var(--g)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;gap:14px}
+.kpi .i{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:17px;flex:0 0 38px}
+.kpi small{color:var(--sub);font-size:12px;display:block}
+.kpi b{font-size:24px;display:block;line-height:1.3}
+.kpi span{font-size:12px;color:var(--sub)}
+.grid2{display:grid;grid-template-columns:1.45fr 1fr;gap:16px;margin-bottom:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.ph{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);gap:10px}
+.ph h3{margin:0;font-size:14.5px}
+.ph a{font-size:12px;color:var(--g);cursor:pointer}
+.ph small{color:var(--sub);font-size:12px}
+.row{display:flex;gap:12px;align-items:center;padding:11px 18px;border-bottom:1px solid #f0f2f4;cursor:pointer}
+.row:last-child{border-bottom:0}
+.row:hover{background:#fafbfb}
+.row .m{flex:1;min-width:0}
+.row .t{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .s{font-size:12px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .amt{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.row .amt small{display:block;color:var(--sub);font-size:11.5px}
+.dd{flex:0 0 56px;text-align:center;font-size:12px;border-radius:7px;padding:3px 0;background:var(--gray);color:#4b555f;font-weight:500}
+.dd.late{background:var(--rl);color:var(--red)}.dd.soon{background:var(--ol);color:var(--org)}.dd.ok{background:var(--gl);color:var(--g)}
+.chip{display:inline-block;font-size:11.5px;border-radius:6px;padding:1px 8px;font-weight:500;white-space:nowrap}
+.c-us{background:var(--bl);color:var(--blue)}.c-kr{background:var(--gl);color:var(--g)}.c-jv{background:var(--pl);color:var(--pur)}
+.c-gs{background:#e9f6f6;color:#11777a}.c-me{background:var(--gray);color:#4b555f}.c-red{background:var(--rl);color:var(--red)}.c-org{background:var(--ol);color:#8a5a00}
+.bars{padding:12px 18px}
+.bar{display:grid;grid-template-columns:120px 1fr 110px;align-items:center;gap:12px;margin:12px 0;cursor:pointer}
+.bar .lb{font-size:13px}
+.bar .tr{height:22px;background:#f0f2f4;border-radius:6px;overflow:hidden;display:flex}
+.bar .tr i{display:block;height:100%;color:#fff;font-style:normal;font-size:11.5px;font-weight:700;padding-left:8px;line-height:22px;white-space:nowrap}
+.bar .v{text-align:right;font-size:12px;color:var(--sub)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--sub);padding:0 18px 14px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.tabs{display:inline-flex;background:#eceff1;border-radius:9px;padding:3px;gap:2px}
+.tabs button{border:0;background:none;padding:6px 13px;border-radius:7px;font:inherit;font-size:13px;color:#57616b;cursor:pointer}
+.tabs button.on{background:#fff;color:var(--tx);font-weight:500;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.tabs button em{font-style:normal;color:var(--sub);font-size:12px;margin-left:4px}
+.board{display:grid;grid-template-columns:repeat(4,minmax(250px,1fr));gap:12px;overflow-x:auto;padding-bottom:10px}
+.col{background:#eef1f3;border-radius:12px;padding:10px;min-height:420px}
+.col h4{margin:2px 4px 4px;font-size:13.5px;display:flex;justify-content:space-between;align-items:center}
+.col h4 .n{width:22px;height:22px;border-radius:50%;background:#fff;display:inline-grid;place-items:center;font-size:12px;margin-right:6px}
+.col h4 small{font-weight:400;color:var(--sub);font-size:12px}
+.col .cd{font-size:11.5px;color:var(--sub);margin:0 6px 10px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin-bottom:9px;cursor:pointer;transition:.12s}
+.card:hover{border-color:#b9d9c7;box-shadow:0 2px 8px rgba(22,97,63,.08)}
+.card .top2{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px}
+.card .nm{font-weight:500;font-size:13.5px;line-height:1.4}
+.card .k{font-size:11.5px;color:var(--sub);margin:2px 0 6px;font-family:ui-monospace,Consolas,monospace}
+.card .ft{display:flex;justify-content:space-between;font-size:12px;gap:6px}
+.card .ft span{color:var(--sub)}
+.prog{height:5px;background:#eef0f2;border-radius:3px;margin:6px 0 4px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--g3)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-weight:500;color:#56606a;text-align:left;padding:10px 12px;background:#f7f8f9;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #f0f2f4;vertical-align:top}
+tr.cl{cursor:pointer}tr.cl:hover td{background:#fafbfb}
+th.n,td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td small{color:var(--sub);display:block;font-size:11.5px}
+tfoot td{font-weight:700;background:#fafbfb}
+.tools{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+input.search{border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;font-size:13px;width:260px;background:#fff}
+.back{font-size:13px;color:var(--sub);cursor:pointer;margin-bottom:8px;display:inline-block}
+.info{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.info div{background:#fff;padding:12px 14px}
+.info small{display:block;color:var(--sub);font-size:11.5px}
+.info b{font-weight:500;font-size:13.5px}
+.stepper{display:flex;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:16px}
+.stepper div{flex:1;text-align:center;font-size:12.5px;color:var(--sub);position:relative}
+.stepper div:before{content:"";position:absolute;top:13px;left:0;right:0;height:2px;background:#e5e8eb;z-index:0}
+.stepper div:first-child:before{left:50%}.stepper div:last-child:before{right:50%}
+.stepper span{position:relative;z-index:1;width:28px;height:28px;border-radius:50%;background:#e5e8eb;color:#7a848e;display:grid;place-items:center;margin:0 auto 5px;font-weight:700;font-size:12px}
+.stepper .past span{background:#b6dcc6;color:#0e4b2e}.stepper .now span{background:var(--g);color:#fff;box-shadow:0 0 0 4px #d3ebdd}.stepper .now{color:var(--tx);font-weight:500}
+.flow{display:grid;grid-template-columns:1fr 24px 1fr 24px 1fr 24px 1fr;align-items:stretch;margin-bottom:16px}
+.flow .arr{display:grid;place-items:center;color:#9aa5ae;font-size:18px}
+.fb{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.fb h4{margin:0 0 8px;font-size:13px;display:flex;align-items:center;gap:8px}
+.fb h4 .n{width:22px;height:22px;border-radius:50%;background:var(--g);color:#fff;display:inline-grid;place-items:center;font-size:12px}
+.fb .big{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+.fb .ln{display:flex;justify-content:space-between;font-size:12.5px;padding:3px 0;border-top:1px dashed #eef0f2;gap:8px}
+.fb .ln span{color:var(--sub)}
+.fb .ln b{font-weight:500;font-variant-numeric:tabular-nums;text-align:right}
+.fb.hl{border-color:#b9d9c7;background:#fbfefc}
+.need{color:var(--org);font-weight:500}
+.neg{color:var(--red)}
+.note{background:var(--ol);border:1px solid #f1deb0;border-radius:10px;padding:10px 14px;font-size:12.5px;margin:0 0 14px}
+.note.g{background:var(--gl);border-color:#cfe6d8}
+.empty{padding:22px;text-align:center;color:var(--sub);font-size:13px}
+.ok{color:#2e9b63;font-weight:500}.ng{color:var(--red);font-weight:500}
+.src{font-size:11.5px;color:var(--sub);padding:8px 18px 12px}
+.gs{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px}
+.gs .num{flex:0 0 32px;height:32px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font-weight:700}
+.gs h3{margin:3px 0 2px;font-size:15px}
+.gs .d{color:var(--sub);margin:0 0 6px;font-size:13px}
+.gs ul{margin:0;padding-left:18px;font-size:13px}
+.gs li{margin-bottom:3px}
+@media(max-width:1100px){.side{position:static;width:auto}main{margin:0;padding:18px 14px}.kpis,.grid2,.grid3,.info{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.flow .arr{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<aside class="side">
+  <div class="brand"><div class="logo">#</div><div><b>소리종합건설</b><small>현장관리 시스템 · 회사용</small></div></div>
+  <nav id="nav"></nav>
+  <div class="foot"><b>기준일 <span id="asof"></span></b>진행 중 현장만 · 보기 전용<br>원자료로 확인 안 된 값은 "확인필요"</div>
+</aside>
+<main id="app"></main>
+<script>
+const DATA={
+ "dom": [
+  {
+   "type": "국내",
+   "key": "A현장",
+   "stage": 3,
+   "구분": "원도급",
+   "공사명": "A현장 정비사업(예시)",
+   "발주처": "예시시청",
+   "대표사": "",
+   "지분": 1.0,
+   "구성": "당사 100%",
+   "총공사": 2000000000,
+   "당사몫": 2000000000,
+   "기간": "2026.03.01 ~ 2026.12.31",
+   "준공예정": "2026-12-31",
+   "하도급사": "가나건설(예시)",
+   "상태": "공사 중",
+   "비고": "예시 데이터",
+   "청구누계": 900000000,
+   "청구율": 0.45,
+   "선급금": 400000000,
+   "노무비": 44000000,
+   "기성준공": 456000000,
+   "직불": 200000000,
+   "최근청구일": "2026-09-15",
+   "최근청구": "1회 기성",
+   "결의총기성": 900000000,
+   "결의집행": 650000000,
+   "미집행": 250000000,
+   "상용급여": 36000000,
+   "남은일수": 100,
+   "claims": [
+    {
+     "구분": "선급금",
+     "내용": "1차 선급금",
+     "청구일": "2026-03-10",
+     "공급가": 363636363,
+     "세액": 36363636,
+     "합계": 400000000,
+     "입금일": "2026-03-20",
+     "입금처": "당사",
+     "당사입금": 400000000,
+     "직불": 0,
+     "확인": "예시"
+    },
+    {
+     "구분": "노무비",
+     "내용": "1회 노무비",
+     "청구일": "2026-06-05",
+     "공급가": 40000000,
+     "세액": 4000000,
+     "합계": 44000000,
+     "입금일": "2026-06-20",
+     "입금처": "하도급사 직불",
+     "당사입금": 0,
+     "직불": 44000000,
+     "확인": "예시"
+    },
+    {
+     "구분": "기성",
+     "내용": "1회 기성",
+     "청구일": "2026-09-15",
+     "공급가": 414545454,
+     "세액": 41454545,
+     "합계": 456000000,
+     "입금일": null,
+     "입금처": null,
+     "당사입금": null,
+     "직불": null,
+     "확인": "입금 전 (예시)"
+    }
+   ],
+   "pay": [
+    [
+     "2026-08",
+     12000000
+    ],
+    [
+     "2026-09",
+     12000000
+    ],
+    [
+     "2026-10",
+     12000000
+    ]
+   ],
+   "ilyong": [
+    [
+     "2026-09",
+     8000000
+    ]
+   ],
+   "subs": [
+    {
+     "업체": "가나건설(예시)",
+     "지급2026": 390000000,
+     "계약": 1200000000,
+     "비고": "예시"
+    }
+   ],
+   "jik": [
+    {
+     "이름": "A현장 1차",
+     "계약번호": "R00EXAMPLE-00",
+     "이행": "단독",
+     "지분": 1.0,
+     "계약": 2000000000,
+     "청구건수": 3,
+     "청구누계": 900000000,
+     "선금": 400000000,
+     "기성준공": 456000000,
+     "노무비": 44000000,
+     "당사수령": 700000000,
+     "직불등": 200000000,
+     "미청구": 1100000000,
+     "지킴이지급": 650000000,
+     "지급률": 0.325,
+     "하도급계약": 1200000000,
+     "하도급수령": 390000000,
+     "하도급초과": 0,
+     "마지막청구": "2026-09-15",
+     "하도급직불": 200000000,
+     "당사to하도급": 0,
+     "subs": []
+    }
+   ],
+   "tax": {
+    "buy": {
+     "cnt": 40,
+     "sup": 531818181,
+     "tot": 585000000,
+     "paid": 351000000,
+     "paidcnt": 25,
+     "y2026": 234000000
+    },
+    "sell": {
+     "cnt": 10,
+     "tot": 900000000,
+     "in": 630000000,
+     "incnt": 7
+    },
+    "bank": {
+     "in": 700000000,
+     "out": 520000000,
+     "incnt": 8,
+     "outcnt": 60,
+     "outByType": {
+      "계산서 지급": 364000000,
+      "세금·공과": 104000000,
+      "보증료": 52000000
+     }
+    }
+   },
+   "미집행근거": "지출결의서(최근) 참조사항 — 예시",
+   "통합정산": null
+  },
+  {
+   "type": "국내",
+   "key": "B현장",
+   "stage": 3,
+   "구분": "공동도급",
+   "공사명": "B현장 정비사업(예시)",
+   "발주처": "예시시청",
+   "대표사": "예시건설(주)",
+   "지분": 0.49,
+   "구성": "예시건설 51% / 당사 49%",
+   "총공사": 6000000000,
+   "당사몫": 2940000000,
+   "기간": "2026.03.01 ~ 2027.06.30",
+   "준공예정": "2027-06-30",
+   "하도급사": "다라산업(예시)",
+   "상태": "공사 중",
+   "비고": "예시 데이터",
+   "청구누계": 1200000000,
+   "청구율": 0.40816326530612246,
+   "선급금": 588000000,
+   "노무비": 44000000,
+   "기성준공": 568000000,
+   "직불": 100000000,
+   "최근청구일": "2026-09-15",
+   "최근청구": "1회 기성",
+   "결의총기성": 1200000000,
+   "결의집행": 1150000000,
+   "미집행": 50000000,
+   "상용급여": 36000000,
+   "남은일수": 100,
+   "claims": [
+    {
+     "구분": "선급금",
+     "내용": "1차 선급금",
+     "청구일": "2026-03-10",
+     "공급가": 534545454,
+     "세액": 53454545,
+     "합계": 588000000,
+     "입금일": "2026-03-20",
+     "입금처": "당사",
+     "당사입금": 588000000,
+     "직불": 0,
+     "확인": "예시"
+    },
+    {
+     "구분": "노무비",
+     "내용": "1회 노무비",
+     "청구일": "2026-06-05",
+     "공급가": 40000000,
+     "세액": 4000000,
+     "합계": 44000000,
+     "입금일": "2026-06-20",
+     "입금처": "하도급사 직불",
+     "당사입금": 0,
+     "직불": 44000000,
+     "확인": "예시"
+    },
+    {
+     "구분": "기성",
+     "내용": "1회 기성",
+     "청구일": "2026-09-15",
+     "공급가": 516363636,
+     "세액": 51636363,
+     "합계": 568000000,
+     "입금일": null,
+     "입금처": null,
+     "당사입금": null,
+     "직불": null,
+     "확인": "입금 전 (예시)"
+    }
+   ],
+   "pay": [
+    [
+     "2026-08",
+     12000000
+    ],
+    [
+     "2026-09",
+     12000000
+    ],
+    [
+     "2026-10",
+     12000000
+    ]
+   ],
+   "ilyong": [
+    [
+     "2026-09",
+     8000000
+    ]
+   ],
+   "subs": [
+    {
+     "업체": "다라산업(예시)",
+     "지급2026": 690000000,
+     "계약": 1764000000,
+     "비고": "예시"
+    }
+   ],
+   "jik": [
+    {
+     "이름": "B현장 1차",
+     "계약번호": "R00EXAMPLE-00",
+     "이행": "공동",
+     "지분": 0.49,
+     "계약": 6000000000,
+     "청구건수": 3,
+     "청구누계": 1200000000,
+     "선금": 588000000,
+     "기성준공": 568000000,
+     "노무비": 44000000,
+     "당사수령": 1100000000,
+     "직불등": 100000000,
+     "미청구": 1740000000,
+     "지킴이지급": 1150000000,
+     "지급률": 0.19166666666666668,
+     "하도급계약": 1764000000,
+     "하도급수령": 690000000,
+     "하도급초과": 0,
+     "마지막청구": "2026-09-15",
+     "하도급직불": 100000000,
+     "당사to하도급": 0,
+     "subs": []
+    }
+   ],
+   "tax": {
+    "buy": {
+     "cnt": 40,
+     "sup": 940909090,
+     "tot": 1035000000,
+     "paid": 621000000,
+     "paidcnt": 25,
+     "y2026": 414000000
+    },
+    "sell": {
+     "cnt": 10,
+     "tot": 1200000000,
+     "in": 840000000,
+     "incnt": 7
+    },
+    "bank": {
+     "in": 1100000000,
+     "out": 920000000,
+     "incnt": 8,
+     "outcnt": 60,
+     "outByType": {
+      "계산서 지급": 644000000,
+      "세금·공과": 184000000,
+      "보증료": 92000000
+     }
+    }
+   },
+   "미집행근거": "지출결의서(최근) 참조사항 — 예시",
+   "통합정산": null
+  },
+  {
+   "type": "국내",
+   "key": "C현장",
+   "stage": 1,
+   "구분": "원도급",
+   "공사명": "C현장 정비사업(예시)",
+   "발주처": "예시시청",
+   "대표사": "",
+   "지분": 1.0,
+   "구성": "당사 100%",
+   "총공사": 9000000000,
+   "당사몫": 9000000000,
+   "기간": "2026.03.01 ~ 2028.10.01",
+   "준공예정": "2028-10-01",
+   "하도급사": "미정",
+   "상태": "착공 전",
+   "비고": "예시 데이터",
+   "청구누계": 0,
+   "청구율": 0.0,
+   "선급금": 1800000000,
+   "노무비": 44000000,
+   "기성준공": -1844000000,
+   "직불": 0,
+   "최근청구일": "2026-09-15",
+   "최근청구": "1회 기성",
+   "결의총기성": 0,
+   "결의집행": 0,
+   "미집행": 0,
+   "상용급여": 36000000,
+   "남은일수": 100,
+   "claims": [],
+   "pay": [
+    [
+     "2026-08",
+     12000000
+    ],
+    [
+     "2026-09",
+     12000000
+    ],
+    [
+     "2026-10",
+     12000000
+    ]
+   ],
+   "ilyong": [
+    [
+     "2026-09",
+     8000000
+    ]
+   ],
+   "subs": [
+    {
+     "업체": "미정",
+     "지급2026": 0,
+     "계약": 5400000000,
+     "비고": "예시"
+    }
+   ],
+   "jik": [],
+   "tax": {
+    "buy": {
+     "cnt": 40,
+     "sup": 0,
+     "tot": 0,
+     "paid": 0,
+     "paidcnt": 25,
+     "y2026": 0
+    },
+    "sell": {
+     "cnt": 10,
+     "tot": 0,
+     "in": 0,
+     "incnt": 7
+    },
+    "bank": {
+     "in": 0,
+     "out": 0,
+     "incnt": 8,
+     "outcnt": 60,
+     "outByType": {
+      "계산서 지급": 0,
+      "세금·공과": 0,
+      "보증료": 0
+     }
+    }
+   },
+   "미집행근거": "착공 전",
+   "통합정산": null
+  },
+  {
+   "type": "국내",
+   "key": "D현장",
+   "stage": 4,
+   "구분": "원도급",
+   "공사명": "D현장 정비사업(예시)",
+   "발주처": "예시시청",
+   "대표사": "",
+   "지분": 1.0,
+   "구성": "당사 100%",
+   "총공사": 800000000,
+   "당사몫": 800000000,
+   "기간": "2026.03.01 ~ 2026.08.31",
+   "준공예정": "2026-08-31",
+   "하도급사": "마바건설(예시)",
+   "상태": "준공",
+   "비고": "예시 데이터",
+   "청구누계": 800000000,
+   "청구율": 1.0,
+   "선급금": 160000000,
+   "노무비": 44000000,
+   "기성준공": 596000000,
+   "직불": 300000000,
+   "최근청구일": "2026-09-15",
+   "최근청구": "1회 기성",
+   "결의총기성": 800000000,
+   "결의집행": 700000000,
+   "미집행": 100000000,
+   "상용급여": 36000000,
+   "남은일수": 100,
+   "claims": [
+    {
+     "구분": "선급금",
+     "내용": "1차 선급금",
+     "청구일": "2026-03-10",
+     "공급가": 145454545,
+     "세액": 14545454,
+     "합계": 160000000,
+     "입금일": "2026-03-20",
+     "입금처": "당사",
+     "당사입금": 160000000,
+     "직불": 0,
+     "확인": "예시"
+    },
+    {
+     "구분": "노무비",
+     "내용": "1회 노무비",
+     "청구일": "2026-06-05",
+     "공급가": 40000000,
+     "세액": 4000000,
+     "합계": 44000000,
+     "입금일": "2026-06-20",
+     "입금처": "하도급사 직불",
+     "당사입금": 0,
+     "직불": 44000000,
+     "확인": "예시"
+    },
+    {
+     "구분": "기성",
+     "내용": "1회 기성",
+     "청구일": "2026-09-15",
+     "공급가": 541818181,
+     "세액": 54181818,
+     "합계": 596000000,
+     "입금일": null,
+     "입금처": null,
+     "당사입금": null,
+     "직불": null,
+     "확인": "입금 전 (예시)"
+    }
+   ],
+   "pay": [
+    [
+     "2026-08",
+     12000000
+    ],
+    [
+     "2026-09",
+     12000000
+    ],
+    [
+     "2026-10",
+     12000000
+    ]
+   ],
+   "ilyong": [
+    [
+     "2026-09",
+     8000000
+    ]
+   ],
+   "subs": [
+    {
+     "업체": "마바건설(예시)",
+     "지급2026": 420000000,
+     "계약": 480000000,
+     "비고": "예시"
+    }
+   ],
+   "jik": [
+    {
+     "이름": "D현장 1차",
+     "계약번호": "R00EXAMPLE-00",
+     "이행": "단독",
+     "지분": 1.0,
+     "계약": 800000000,
+     "청구건수": 3,
+     "청구누계": 800000000,
+     "선금": 160000000,
+     "기성준공": 596000000,
+     "노무비": 44000000,
+     "당사수령": 500000000,
+     "직불등": 300000000,
+     "미청구": 0,
+     "지킴이지급": 700000000,
+     "지급률": 0.875,
+     "하도급계약": 480000000,
+     "하도급수령": 420000000,
+     "하도급초과": 0,
+     "마지막청구": "2026-09-15",
+     "하도급직불": 300000000,
+     "당사to하도급": 0,
+     "subs": []
+    }
+   ],
+   "tax": {
+    "buy": {
+     "cnt": 40,
+     "sup": 572727272,
+     "tot": 630000000,
+     "paid": 378000000,
+     "paidcnt": 25,
+     "y2026": 252000000
+    },
+    "sell": {
+     "cnt": 10,
+     "tot": 800000000,
+     "in": 560000000,
+     "incnt": 7
+    },
+    "bank": {
+     "in": 500000000,
+     "out": 560000000,
+     "incnt": 8,
+     "outcnt": 60,
+     "outByType": {
+      "계산서 지급": 392000000,
+      "세금·공과": 112000000,
+      "보증료": 56000000
+     }
+    }
+   },
+   "미집행근거": "지출결의서(최근) 참조사항 — 예시",
+   "통합정산": null
+  }
+ ],
+ "us": [
+  {
+   "type": "미군",
+   "key": "EX-26-FA001",
+   "short": "26-FA001",
+   "region": "평택",
+   "group": "상무님",
+   "stage": 3,
+   "공사명": "평택 빌딩 보수공사(예시)",
+   "계약": 1000000000,
+   "하도급금액": 934579439,
+   "요율": 0.07,
+   "기간": "2026.03.01 ~ 2027.03.31",
+   "LC": null,
+   "외자재원화": null,
+   "gisung": [
+    {
+     "차수": "1차",
+     "준공": null,
+     "인보이스": "2026-05-01",
+     "청구": 300000000,
+     "공제051": 1530000,
+     "실입금": 298470000,
+     "입금일": "2026-05-09",
+     "비고": "10일 안 지급 → 0.51% 할인 (예시)",
+     "지연이자": null,
+     "통장": true
+    },
+    {
+     "차수": "2차",
+     "준공": null,
+     "인보이스": "2026-07-01",
+     "청구": 250000000,
+     "공제051": null,
+     "실입금": 250000000,
+     "입금일": "2026-08-05",
+     "비고": "10일 넘어 지급 → 전액 (예시)",
+     "지연이자": null,
+     "통장": true
+    },
+    {
+     "차수": "3차",
+     "준공": null,
+     "인보이스": "2026-11-03",
+     "청구": 150000000,
+     "공제051": null,
+     "실입금": null,
+     "입금일": null,
+     "비고": "0.51% 조기지급 할인 조건 · 입금 전 (예시)",
+     "지연이자": null,
+     "통장": false
+    }
+   ],
+   "청구누계": 700000000,
+   "실입금": 548470000,
+   "gongje": [
+    [
+     "원도급 지급자재",
+     432000000
+    ],
+    [
+     "직원급료",
+     48000000
+    ]
+   ],
+   "지출": 480000000,
+   "지출근거": "정산서 공제(원도급 지급자재·직원급료·임금)",
+   "미집행": 12000000,
+   "미집행근거": "2차 결의서(예시)",
+   "note": "예시 현장",
+   "sal": [
+    [
+     "2026-09",
+     "상용",
+     10000000
+    ]
+   ],
+   "fx": [],
+   "tax": {
+    "key": "미군 26-FA001",
+    "buy": {
+     "cnt": 10,
+     "tot": 500000000,
+     "paid": 450000000
+    },
+    "bank": {
+     "in": 0,
+     "out": 450000000
+    }
+   }
+  },
+  {
+   "type": "미군",
+   "key": "EX-26-FA002",
+   "short": "26-FA002",
+   "region": "동두천",
+   "group": "상무님",
+   "stage": 2,
+   "공사명": "동두천 빌딩 보수공사(예시)",
+   "계약": 600000000,
+   "하도급금액": 552995392,
+   "요율": 0.085,
+   "기간": "2026.03.01 ~ 2027.03.31",
+   "LC": null,
+   "외자재원화": null,
+   "gisung": [],
+   "청구누계": 0,
+   "실입금": 0,
+   "gongje": [
+    [
+     "원도급 지급자재",
+     4500000
+    ],
+    [
+     "직원급료",
+     500000
+    ]
+   ],
+   "지출": 5000000,
+   "지출근거": "정산서 공제(원도급 지급자재·직원급료·임금)",
+   "미집행": null,
+   "미집행근거": null,
+   "note": "인보이스 전 (예시)",
+   "sal": [
+    [
+     "2026-09",
+     "상용",
+     10000000
+    ]
+   ],
+   "fx": [],
+   "tax": null
+  },
+  {
+   "type": "미군",
+   "key": "EX-26-FA003",
+   "short": "26-FA003",
+   "region": "평택",
+   "group": "상무님",
+   "stage": 4,
+   "공사명": "평택 빌딩 보수공사(예시)",
+   "계약": 300000000,
+   "하도급금액": 276497696,
+   "요율": 0.085,
+   "기간": "2026.03.01 ~ 2027.03.31",
+   "LC": null,
+   "외자재원화": null,
+   "gisung": [
+    {
+     "차수": "1차 기성 및 준공",
+     "준공": "준공",
+     "인보이스": "2026-10-20",
+     "청구": 300000000,
+     "공제051": null,
+     "실입금": 300000000,
+     "입금일": "2026-11-10",
+     "비고": "할인 조건 없는 인보이스 (예시)",
+     "지연이자": null,
+     "통장": true
+    }
+   ],
+   "청구누계": 300000000,
+   "실입금": 300000000,
+   "gongje": [],
+   "지출": 0,
+   "지출근거": "정산서 공제(원도급 지급자재·직원급료·임금)",
+   "미집행": null,
+   "미집행근거": null,
+   "note": "준공금 입금 · 상무님 정산 전 (예시)",
+   "sal": [
+    [
+     "2026-09",
+     "상용",
+     10000000
+    ]
+   ],
+   "fx": [],
+   "tax": null
+  },
+  {
+   "type": "미군",
+   "key": "EX-GS-001",
+   "short": "군산 예시",
+   "region": "군산",
+   "group": "본사",
+   "stage": 3,
+   "공사명": "군산 빌딩 보수공사(예시)",
+   "계약": 200000000,
+   "하도급금액": null,
+   "요율": null,
+   "기간": "2026.03.01 ~ 2027.03.31",
+   "LC": null,
+   "외자재원화": null,
+   "gisung": [
+    {
+     "차수": "1차",
+     "준공": null,
+     "인보이스": "2026-06-01",
+     "청구": 100000000,
+     "공제051": null,
+     "실입금": 100000000,
+     "입금일": "2026-06-20",
+     "비고": "예시",
+     "지연이자": null,
+     "통장": true
+    }
+   ],
+   "청구누계": 100000000,
+   "실입금": 100000000,
+   "gongje": [],
+   "지출": 60000000,
+   "지출근거": "결의서 합계(VAT포함)",
+   "미집행": null,
+   "미집행근거": null,
+   "note": "군산 본사 직영 (예시)",
+   "sal": [
+    [
+     "2026-09",
+     "상용",
+     10000000
+    ]
+   ],
+   "fx": [],
+   "tax": null
+  },
+  {
+   "type": "미군",
+   "key": "EX-GS-002",
+   "short": "군산 예시2",
+   "region": "군산",
+   "group": "본사",
+   "stage": 2,
+   "공사명": "군산 빌딩 보수공사(예시)",
+   "계약": 50000000,
+   "하도급금액": null,
+   "요율": null,
+   "기간": "2026.03.01 ~ 2027.03.31",
+   "LC": null,
+   "외자재원화": null,
+   "gisung": [],
+   "청구누계": 0,
+   "실입금": 0,
+   "gongje": [],
+   "지출": 10000000,
+   "지출근거": "결의서 합계(VAT포함)",
+   "미집행": null,
+   "미집행근거": null,
+   "note": "군산 본사 직영 · 입금 전 (예시)",
+   "sal": [
+    [
+     "2026-09",
+     "상용",
+     10000000
+    ]
+   ],
+   "fx": [],
+   "tax": null
+  }
+ ],
+ "jchk": [],
+ "checks": [
+  {
+   "where": "국내 A현장",
+   "what": "예시: 하도급 계약 대비 미지급 차액 — 하도급 변경 여부 확인",
+   "site": "D-A현장",
+   "kind": "확인할 것"
+  },
+  {
+   "where": "국내 B현장",
+   "what": "예시: 지출결의서 총기성과 실제 청구 금액이 다름",
+   "site": "D-B현장",
+   "kind": "고칠 것"
+  },
+  {
+   "where": "미군 26-FA001",
+   "what": "예시: 3차 인보이스 입금 전 — 지급 여부 확인",
+   "site": "U-EX-26-FA001",
+   "kind": "확인할 것"
+  },
+  {
+   "where": "미군 26-FA003",
+   "what": "예시: 준공금 입금됨 — 상무님 준공 정산(결의서) 전",
+   "site": "U-EX-26-FA003",
+   "kind": "확인할 것"
+  }
+ ],
+ "asof": "2026-11-20"
+};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const won=v=>v==null||v===''?'<span class="need">확인필요</span>':(v<0?'<span class="neg">':'<span>')+Math.round(v).toLocaleString('ko-KR')+'</span>';
+const wonp=v=>v==null?'-':Math.round(v).toLocaleString('ko-KR');
+const eok=v=>v==null?'확인필요':(v/1e8).toFixed(v>=1e10?1:2).replace(/\.?0+$/,'')+'억';
+const pct=v=>v==null?'-':(v*100).toFixed(1)+'%';
+const ASOF=new Date(DATA.asof);
+const days=d=>d?Math.round((new Date(d)-ASOF)/864e5):null;
+const STAGES=[{n:1,t:'계약·착공 준비',d:'계약 끝, 착공 전'},{n:2,t:'기성 전',d:'공사 중 · 인보이스·청구 전'},{n:3,t:'기성 진행',d:'인보이스(청구) 나감 · 입금 진행'},{n:4,t:'준공·정산 마무리',d:'준공금 입금 / 마지막 정산'}];
+
+// ---------- 현장 공통 모양으로 정리
+const SITES=[];
+DATA.dom.forEach(s=>{
+  const jv=s.구분==='공동도급';
+  SITES.push({id:'D-'+s.key,type:'국내',jv,stage:s.stage,name:s.공사명,short:s.key,key:s.key,region:jv?'공동도급':'원도급',
+    owner:s.발주처,contract:s.당사몫,total:s.총공사,share:s.지분,billed:s.청구누계,recv:s.청구누계,
+    out:s.결의집행,mijip:s.미집행,mijipSrc:s.미집행근거,end:s.준공예정,period:s.기간,rate:s.청구율,raw:s});
+});
+DATA.us.forEach(s=>{
+  const mij = s.미집행!=null? s.미집행 : null;
+  let mijLabel = s.미집행근거;
+  if(s.group==='본사'){ }
+  else if(mij==null){ mijLabel = s.실입금>0 ? '상무님 기성 정산 전' : (s.청구누계>0 ? '입금 전 (인보이스 나감)' : '기성 전 (받은 돈 없음)'); }
+  SITES.push({id:'U-'+s.key,type:'미군',jv:false,stage:s.stage,name:s.공사명,short:s.short,key:s.key,region:s.region,group:s.group,
+    owner:s.group==='본사'?'군산 (본사 직영)':'상무님 기성 정산',contract:s.계약,billed:s.청구누계,recv:s.실입금,out:s.지출,
+    mijip: s.group==='본사' ? (s.실입금 - (s.지출||0)) : mij, mijipSrc: s.group==='본사' ? '받은 돈 − 결의서 지출' : mijLabel,
+    end: endOf(s.기간), period:s.기간, rate: s.계약? s.청구누계/s.계약 : null, raw:s});
+});
+function endOf(p){ if(!p) return null; const m=String(p).match(/(\d{4})[.\s]*(\d{1,2})[.\s]*(\d{1,2})\s*$/); if(!m) return null; return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;}
+const CHECKS=buildChecks();
+const PAGES=[['dash','대시보드','▦'],['board','현장 보드','▥'],['list','전체 현장','☰'],['flow','돈 흐름 대조','⇄'],['check','확인할 것','!'],['guide','보는 법·기준','?']];
+let state={page:'dash',tab:'전체',q:'',site:null};
+
+function nav(){
+  $('#nav').innerHTML='<div class="cap">현장</div>'+PAGES.map(([k,t,i])=>`<a class="${state.page===k||(k==='list'&&state.page==='site')?'on':''}" onclick="go('${k}')"><span class="ic">${i}</span>${t}${k==='check'?`<span class="badge">${CHECKS.length}</span>`:''}</a>`).join('');
+  $('#asof').textContent=DATA.asof;
+}
+function go(p,site){ state.page=p; state.site=site||null; try{location.hash=p==='site'?'':p}catch(e){} render(); window.scrollTo(0,0);}
+function openSite(id){ go('site',id); }
+function chips(s){
+  let h=s.type==='국내'?'<span class="chip c-kr">국내</span>':'<span class="chip c-us">미군</span>';
+  if(s.jv) h+=`<span class="chip c-jv">공동 ${Math.round(s.share*100)}%</span>`;
+  if(s.type==='미군') h+= s.group==='본사'?'<span class="chip c-gs">군산 본사</span>':`<span class="chip c-me">${esc(s.region)}</span>`;
+  else if(!s.jv) h+='<span class="chip c-me">원도급</span>';
+  return h;
+}
+function filt(list){ return list.filter(s=>(state.tab==='전체'||s.type===state.tab)&&(!state.q||(s.name+s.short+s.key+(s.owner||'')).toLowerCase().includes(state.q.toLowerCase()))); }
+function tabs(){ const c=t=>SITES.filter(s=>t==='전체'||s.type===t).length;
+  return `<div class="tabs">${['전체','국내','미군'].map(t=>`<button class="${state.tab===t?'on':''}" onclick="state.tab='${t}';render()">${t}<em>${c(t)}</em></button>`).join('')}</div>`;}
+function sum(a,f){return a.reduce((x,s)=>x+(f(s)||0),0)}
+function mijCell(s){
+  if(s.mijip==null) return `<span class="need">${esc(s.mijipSrc||'확인필요')}</span>`;
+  return won(s.mijip)+`<small>${esc(s.mijipSrc||'')}</small>`;
+}
+
+// ---------- 대시보드
+function dash(){
+  const dom=SITES.filter(s=>s.type==='국내'), us=SITES.filter(s=>s.type==='미군');
+  const known=SITES.filter(s=>s.mijip!=null && !(s.type==='미군'&&s.group==='본사'));
+  const unk=SITES.filter(s=>s.mijip==null && s.recv>0);
+  const soon=SITES.filter(s=>s.end && s.stage<4).map(s=>({s,d:days(s.end)})).filter(x=>x.d!=null&&x.d<=120).sort((a,b)=>a.d-b.d);
+  const recent=[];
+  DATA.dom.forEach(d=>d.claims.forEach(c=>recent.push({site:'D-'+d.key,name:d.key,what:c.내용,date:c.청구일,amt:c.합계,paid:!!c.입금일,src:c.입금처})));
+  DATA.us.forEach(u=>u.gisung.forEach(g=>{ if(g.입금일||g.인보이스) recent.push({site:'U-'+u.key,name:u.short,what:g.차수+(g.준공?' (준공)':''),date:g.입금일||g.인보이스,amt:g.실입금??g.청구,paid:!!g.실입금,src:g.실입금?'입금':'미입금'})}));
+  recent.sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  const stg=STAGES.map(st=>{const a=SITES.filter(s=>s.stage===st.n);return {...st,dom:a.filter(s=>s.type==='국내').length,us:a.filter(s=>s.type==='미군').length,amt:sum(a,s=>s.contract)}});
+  const mx=Math.max(...stg.map(x=>x.dom+x.us));
+  return `<div class="top"><div><div class="date">${DATA.asof} 기준 · 진행 중 현장</div><h1>현장 한눈에 보기<small>계약금액부터 받은 돈·나간 돈·정산(미집행)까지</small></h1></div>
+   <div style="display:flex;gap:8px"><button class="btn" onclick="go('list')">전체 현장</button><button class="btn pri" onclick="go('board')">현장 보드</button></div></div>
+  <div class="kpis">
+   <div class="kpi" onclick="go('list')"><div class="i" style="background:var(--gl);color:var(--g)">▣</div><div><small>진행 중 현장</small><b>${SITES.length}</b><span>국내 ${dom.length} · 미군 ${us.length} (군산 본사 ${us.filter(s=>s.group==='본사').length})</span></div></div>
+   <div class="kpi"><div class="i" style="background:var(--bl);color:var(--blue)">₩</div><div><small>계약금액 합계 (당사 몫)</small><b>${eok(sum(SITES,s=>s.contract))}</b><span>국내 ${eok(sum(dom,s=>s.contract))} · 미군 ${eok(sum(us,s=>s.contract))}</span></div></div>
+   <div class="kpi"><div class="i" style="background:var(--gl);color:var(--g)">↓</div><div><small>받은 돈 누계</small><b>${eok(sum(SITES,s=>s.recv))}</b><span>국내 청구(VAT포함·직불 포함) ${eok(sum(dom,s=>s.recv))} · 미군 실입금 ${eok(sum(us,s=>s.recv))}</span></div></div>
+   <div class="kpi" onclick="go('list')"><div class="i" style="background:var(--ol);color:var(--org)">≡</div><div><small>미집행 (결의서로 확인된 곳)</small><b>${eok(sum(known,s=>s.mijip))}</b><span>${known.length}곳 합계 · 받은 돈 있는데 미정산 ${unk.length}곳</span></div></div>
+  </div>
+  <div class="grid2">
+   <div class="panel"><div class="ph"><h3>준공 다가오는 현장 (120일 안)</h3><a onclick="go('list')">전체 보기 →</a></div>
+    ${soon.length?soon.map(({s,d})=>`<div class="row" onclick="openSite('${s.id}')"><div class="dd ${d<0?'late':d<=60?'soon':''}">${d<0?'지남':'D-'+d}</div><div class="m"><div class="t">${esc(s.name)}</div><div class="s">${esc(s.short)} · 준공 ${s.end} · ${chipsText(s)}</div></div><div class="amt">${eok(s.contract)}<small>받은 돈 ${pct(s.rate)}</small></div></div>`).join(''):'<div class="empty">없음</div>'}
+   </div>
+   <div class="panel"><div class="ph"><h3>현장 단계</h3><a onclick="go('board')">보드 →</a></div>
+    <div class="bars">${stg.map(x=>`<div class="bar" onclick="go('board')"><div class="lb">${x.n}. ${x.t}</div><div class="tr">${x.dom?`<i style="width:${x.dom/mx*100}%;background:var(--g3)">${x.dom}</i>`:''}${x.us?`<i style="width:${x.us/mx*100}%;background:var(--blue)">${x.us}</i>`:''}</div><div class="v">${eok(x.amt)}</div></div>`).join('')}</div>
+    <div class="legend"><span><i style="background:var(--g3)"></i>국내</span><span><i style="background:var(--blue)"></i>미군</span><span>오른쪽 = 계약금액(당사 몫)</span></div>
+   </div>
+  </div>
+  <div class="grid3">
+   <div class="panel"><div class="ph"><h3>최근 청구·입금</h3><small>국내 청구대장 · 미군 기성</small></div>
+    ${recent.slice(0,9).map(r=>`<div class="row" onclick="openSite('${r.site}')"><div class="m"><div class="t">${esc(r.name)} · ${esc(r.what)}</div><div class="s">${r.date||''} · ${r.paid?esc(r.src||'입금'):'<span class="need">입금 전</span>'}</div></div><div class="amt">${wonp(r.amt)}</div></div>`).join('')}
+   </div>
+   <div class="panel"><div class="ph"><h3>미집행 (남은 돈)</h3><small>지출결의서 기준</small></div>
+    ${SITES.filter(s=>s.mijip!=null&&!(s.type==='미군'&&s.group==='본사')&&s.stage>1).sort((a,b)=>b.mijip-a.mijip).map(s=>`<div class="row" onclick="openSite('${s.id}')"><div class="m"><div class="t">${esc(s.short)}</div><div class="s">${esc(s.mijipSrc)}</div></div><div class="amt">${won(s.mijip)}</div></div>`).join('')}
+   </div>
+   <div class="panel"><div class="ph"><h3>확인할 것</h3><a onclick="go('check')">전체 ${CHECKS.length}건 →</a></div>
+    ${CHECKS.slice(0,8).map(c=>`<div class="row" onclick="${c.site?`openSite('${c.site}')`:`go('check')`}"><div class="m"><div class="t">${esc(c.where)}</div><div class="s">${esc(c.what)}</div></div></div>`).join('')}
+   </div>
+  </div>`;
+}
+function chipsText(s){return s.type==='국내'?(s.jv?'공동도급':'원도급'):(s.group==='본사'?'군산 본사':'미군 '+s.region)}
+
+// ---------- 보드
+function board(){
+  const list=filt(SITES);
+  return `<div class="top"><div><h1>현장 보드<small>계약 → 기성 → 준공·정산 4단계 · 진행 ${list.length}곳</small></h1></div><div class="tools" style="margin:0">${tabs()}<input class="search" placeholder="공사명·계약번호 검색" value="${esc(state.q)}" oninput="state.q=this.value;render(true)"></div></div>
+  <div class="board">${STAGES.map(st=>{const a=list.filter(s=>s.stage===st.n);
+   return `<div class="col"><h4><span><span class="n">${st.n}</span>${st.t}</span><small>${a.length} · ${eok(sum(a,s=>s.contract))}</small></h4><div class="cd">${st.d}</div>
+   ${a.length?a.map(card).join(''):'<div class="empty">없음</div>'}</div>`}).join('')}</div>`;
+}
+function card(s){
+  const d=days(s.end);
+  const dl=s.stage<4&&d!=null?`<span class="chip ${d<0?'c-red':d<=60?'c-org':'c-me'}">${d<0?'기한 지남':'D-'+d}</span>`:'';
+  return `<div class="card" onclick="openSite('${s.id}')"><div class="top2">${chips(s)}${dl}</div><div class="nm">${esc(s.name)}</div><div class="k">${esc(s.type==='미군'?s.key:s.short)}</div>
+  <div class="prog"><i style="width:${Math.min(100,(s.rate||0)*100)}%"></i></div>
+  <div class="ft"><b>${eok(s.contract)}</b><span>받은 돈 ${pct(s.rate)}</span></div>
+  <div class="ft" style="margin-top:3px"><span>미집행</span>${s.mijip==null?`<span class="need" style="font-size:11.5px">${esc(s.mijipSrc)}</span>`:`<b>${won(s.mijip)}</b>`}</div></div>`;
+}
+
+// ---------- 전체 현장
+function list(){
+  const a=filt(SITES).sort((x,y)=>x.type.localeCompare(y.type)||x.stage-y.stage);
+  return `<div class="top"><div><h1>전체 현장<small>현장 한 줄 = 계약 → 받은 돈 → 나간 돈 → 미집행</small></h1></div></div>
+  <div class="tools">${tabs()}<input class="search" placeholder="공사명·계약번호 검색" value="${esc(state.q)}" oninput="state.q=this.value;render(true)"></div>
+  <div class="panel"><table><thead><tr><th>단계</th><th>현장</th><th class="n">계약금액(당사 몫)</th><th class="n">받은 돈</th><th class="n">나간 돈</th><th class="n">미집행 / 정산</th><th class="n">미청구 잔액</th><th>준공</th></tr></thead><tbody>
+  ${a.map(s=>`<tr class="cl" onclick="openSite('${s.id}')"><td><span class="chip c-me">${s.stage}. ${STAGES[s.stage-1].t}</span></td>
+   <td><b style="font-weight:500">${esc(s.name)}</b><small>${chips(s)} ${esc(s.type==='미군'?s.key:'')}</small></td>
+   <td class="n">${won(s.contract)}${s.jv?`<small>총 ${wonp(s.total)} × ${Math.round(s.share*100)}%</small>`:''}</td>
+   <td class="n">${won(s.recv)}<small>${s.type==='국내'?'청구누계(VAT포함)':'실입금'} · ${pct(s.rate)}</small></td>
+   <td class="n">${s.out==null?'<span class="need">확인필요</span>':won(s.out)}<small>${s.type==='국내'?'결의서 집행누계':s.raw.지출근거.split('(')[0]}</small></td>
+   <td class="n">${mijCell(s)}</td>
+   <td class="n">${s.contract!=null?won(s.contract-(s.billed||0)):'-'}</td>
+   <td>${s.end||'<span class="need">확인필요</span>'}${s.end&&s.stage<4?`<small>${days(s.end)<0?'지남':'D-'+days(s.end)}</small>`:''}</td></tr>`).join('')}
+  </tbody><tfoot><tr><td></td><td>합계 ${a.length}곳</td><td class="n">${wonp(sum(a,s=>s.contract))}</td><td class="n">${wonp(sum(a,s=>s.recv))}</td><td class="n">${wonp(sum(a,s=>s.out))}</td><td class="n">${wonp(sum(a.filter(s=>!(s.type==='미군'&&s.group==='본사')),s=>s.mijip))}<small>확인된 곳만</small></td><td class="n">${wonp(sum(a,s=>s.contract!=null?s.contract-(s.billed||0):0))}</td><td></td></tr></tfoot></table>
+  <div class="src">국내: 받은 돈 = 발주처 청구 합계(VAT 포함, 하도급 직불 포함) · 나간 돈·미집행 = 최근 지출결의서(현장별 통합정산 파일이 있으면 그 값) &nbsp;|&nbsp; 미군(상무님): 받은 돈 = 실입금(10일 안 지급이면 0.51% 할인 후), 나간 돈 = 정산서 공제 합계, 미집행 = 상무님 기성 지출결의서 &nbsp;|&nbsp; 군산(본사): 정산 = 받은 돈 − 결의서 지출</div></div>`;
+}
+
+// ---------- 현장 상세
+function site(){
+  const s=SITES.find(x=>x.id===state.site); if(!s) return list();
+  return s.type==='국내'?siteDom(s):siteUs(s);
+}
+function stepper(n){return `<div class="stepper">${STAGES.map(st=>`<div class="${st.n<n?'past':st.n===n?'now':''}"><span>${st.n}</span>${st.t}</div>`).join('')}</div>`}
+function ln(k,v,raw){return `<div class="ln"><span>${k}</span><b>${raw?v:won(v)}</b></div>`}
+function siteDom(s){
+  const r=s.raw, t=r.tax||{}, d=days(s.end);
+  const direct=r.직불||0, own=(r.청구누계||0)-direct;
+  const cl=r.claims;
+  return `<span class="back" onclick="go('list')">← 전체 현장</span>
+  <div class="top"><div><div class="date">${chips(s)} &nbsp;${esc(r.발주처)}</div><h1>${esc(r.공사명)}<small>${esc(r.상태)}</small></h1></div></div>
+  <div class="info"><div><small>발주처</small><b>${esc(r.발주처)}</b></div><div><small>${s.jv?'대표사 · 지분':'계약 형태'}</small><b>${s.jv?esc(r.대표사)+' · '+esc(r.구성):'원도급 (당사 100%)'}</b></div>
+   <div><small>공사기간</small><b>${esc(r.기간)}</b></div><div><small>준공예정</small><b>${s.end||'<span class="need">확인필요</span>'} ${d!=null&&s.stage<4?`<span class="chip ${d<=60?'c-org':'c-me'}">${d<0?'지남':'D-'+d}</span>`:''}</b></div>
+   <div><small>총공사(부기)금액</small><b>${won(r.총공사)}</b></div><div><small>당사 몫</small><b>${won(r.당사몫)}</b></div><div><small>주 하도급사</small><b>${esc(r.하도급사)}</b></div><div><small>최근 청구</small><b>${esc(r.최근청구||'-')} ${r.최근청구일?'('+r.최근청구일+')':''}</b></div></div>
+  ${stepper(s.stage)}
+  ${r.비고?`<div class="note">${esc(r.비고)}</div>`:''}
+  <div class="flow">
+   <div class="fb"><h4><span class="n">1</span>계약</h4><div class="big">${won(r.당사몫)}</div>${ln('총공사(부기)',r.총공사)}${s.jv?ln('당사 지분',Math.round(r.지분*100)+'%',1):''}${r.jik.map(j=>ln(j.이름+' 계약(지킴이)',j.계약)).join('')}</div><div class="arr">→</div>
+   <div class="fb"><h4><span class="n">2</span>받은 돈</h4><div class="big">${won(r.청구누계)}</div>${ln('선급금',r.선급금)}${ln('기성·준공',r.기성준공)}${ln('노무비',r.노무비)}${ln('당사 계좌 입금',own)}${ln('하도급 직불',direct)}${ln('미청구 잔액',(r.당사몫||0)-(r.청구누계||0))}</div><div class="arr">→</div>
+   <div class="fb"><h4><span class="n">3</span>나간 돈</h4><div class="big">${won(r.결의집행)}</div>${ln('결의서 집행누계',r.결의집행)}${ln('홈택스 매입(현장 지정)',t.buy?t.buy.tot:0)}${ln('통장 출금(현장 지정)',t.bank?t.bank.out:0)}${ln('상용 급여 누계',r.상용급여)}${r.ilyong.length?ln('일용 노무비(집계표)',sum(r.ilyong,x=>x[1])):''}</div><div class="arr">→</div>
+   <div class="fb hl"><h4><span class="n">4</span>정산</h4><div class="big">${won(r.미집행)}</div><div class="ln"><span>근거</span><b>${esc(s.mijipSrc)}</b></div>${ln('결의서 총기성',r.결의총기성)}${ln('결의서 집행',r.결의집행)}${r.통합정산?ln('회사 지결 미집행',r.통합정산.회사미집행):''}${!r.통합정산&&s.stage>1?'<div class="ln"><span>현장별 통합정산</span><b class="need">준비 중</b></div>':''}</div>
+  </div>
+  ${r.jik.length?`<div class="panel"><div class="ph"><h3>하도급지킴이 연결</h3><small>현장별 요약 · 계약번호 기준</small></div><table><thead><tr><th>차수</th><th class="n">계약금액</th><th class="n">청구누계</th><th class="n">당사 수령</th><th class="n">직불·지분 등</th><th class="n">지킴이 지급</th><th class="n">지급률</th><th class="n">하도급 계약</th><th class="n">하도급 수령</th><th>마지막 청구</th></tr></thead><tbody>
+   ${r.jik.map(j=>`<tr><td>${esc(j.이름)}<small>${esc(j.계약번호)} · ${esc(j.이행)}${j.이행==='공동'?' '+Math.round(j.지분*100)+'%':''}</small></td><td class="n">${won(j.계약)}</td><td class="n">${won(j.청구누계)}</td><td class="n">${won(j.당사수령)}</td><td class="n">${won(j.직불등)}</td><td class="n">${won(j.지킴이지급)}</td><td class="n">${pct(j.지급률)}</td><td class="n">${won(j.하도급계약)}</td><td class="n">${won(j.하도급수령)}${j.하도급초과?'<small class="ng">초과 '+j.하도급초과+'건</small>':''}</td><td>${j.마지막청구||'-'}</td></tr>`).join('')}
+   </tbody></table>${s.jv?'<div class="src">공동도급: 계약금액·지킴이 지급은 계약 전체 금액, 청구·수령은 당사 청구 기준.</div>':''}</div>`:''}
+  <div class="grid2" style="grid-template-columns:1fr 1fr">
+   <div class="panel"><div class="ph"><h3>하도급 계약 대비 지급</h3><small>하도급지킴이 하도급계약 · 통합관리 하도급사</small></div>
+    ${subTable(r)}</div>
+   <div class="panel"><div class="ph"><h3>홈택스 · 통장 연결</h3><small>세금계산서·통장 통합대장 (현장 지정분)</small></div>
+    <table><tbody>
+     <tr><td>매출 세금계산서</td><td class="n">${t.sell?t.sell.cnt+'건':'-'}</td><td class="n">${won(t.sell?t.sell.tot:0)}</td></tr>
+     <tr><td>매출 중 통장 입금 확인<small>직불은 당사 통장에 안 들어옴</small></td><td class="n">${t.sell?t.sell.incnt+'건':'-'}</td><td class="n">${won(t.sell?t.sell.in:0)}</td></tr>
+     <tr><td>매입 세금계산서(전체 연도)</td><td class="n">${t.buy?t.buy.cnt+'건':'-'}</td><td class="n">${won(t.buy?t.buy.tot:0)}</td></tr>
+     <tr><td>매입 중 지급일 확인</td><td class="n">${t.buy?t.buy.paidcnt+'건':'-'}</td><td class="n">${won(t.buy?t.buy.paid:0)}</td></tr>
+     <tr><td>통장 입금(현장 지정)</td><td class="n">${t.bank?t.bank.incnt+'건':'-'}</td><td class="n">${won(t.bank?t.bank.in:0)}</td></tr>
+     <tr><td>통장 출금(현장 지정)</td><td class="n">${t.bank?t.bank.outcnt+'건':'-'}</td><td class="n">${won(t.bank?t.bank.out:0)}</td></tr>
+     ${t.bank?Object.entries(t.bank.outByType).map(([k,v])=>`<tr><td style="padding-left:26px;color:var(--sub)">└ ${esc(k)}</td><td></td><td class="n">${wonp(v)}</td></tr>`).join(''):''}
+    </tbody></table></div>
+  </div>
+  <div class="panel"><div class="ph"><h3>청구 · 입금 내역</h3><small>${cl.length}건 · 국내공사 현장통합관리 청구대장</small></div>
+   <table><thead><tr><th>청구일</th><th>구분</th><th>내용</th><th class="n">합계(VAT포함)</th><th>입금</th><th class="n">당사 입금</th><th class="n">하도급 직불</th><th>확인</th></tr></thead><tbody>
+   ${cl.slice().reverse().map(c=>`<tr><td>${c.청구일||''}</td><td>${esc(c.구분)}</td><td>${esc(c.내용)}</td><td class="n">${wonp(c.합계)}</td><td>${c.입금일?esc(c.입금일):'<span class="need">입금 전</span>'}<small>${esc(c.입금처||'')}</small></td><td class="n">${c.당사입금==null?'<span class="need">확인필요</span>':wonp(c.당사입금)}</td><td class="n">${c.직불==null?'-':wonp(c.직불)}</td><td><small>${esc(c.확인||'')}</small></td></tr>`).join('')||'<tr><td colspan="8" class="empty">청구 없음</td></tr>'}
+   </tbody></table></div>
+  ${payPanel(r.pay,r.ilyong)}`;
+}
+function subTable(r){
+  const rows=[]; r.jik.forEach(j=>j.subs.forEach(x=>rows.push({who:x.업체,what:j.이름+' · '+x.계약명.replace(/^.*중\s*/,''),c:x.계약,p:x.실지급,src:'지킴이'})));
+  if(!rows.length) r.subs.forEach(x=>rows.push({who:x.업체,what:x.비고||'',c:x.계약,p:x.지급2026,src:'매입장 2026 외주비(공급가)'}));
+  if(!rows.length) return '<div class="empty">등록된 하도급 없음</div>';
+  return `<table><thead><tr><th>하도급사</th><th class="n">계약</th><th class="n">지급</th><th class="n">지급률</th></tr></thead><tbody>${rows.map(x=>`<tr><td>${esc(x.who)}<small>${esc(String(x.what).slice(0,60))}</small></td><td class="n">${x.c==null?'<span class="need">확인필요</span>':wonp(x.c)}</td><td class="n">${x.p==null?'<span class="need">확인필요</span>':wonp(x.p)}<small>${x.src}</small></td><td class="n">${x.c&&x.p!=null?pct(x.p/x.c):'-'}</td></tr>`).join('')}</tbody></table>`;
+}
+function payPanel(pay,il){
+  if(!pay.length&&!il.length) return '';
+  const p26=pay.filter(x=>String(x[0]).startsWith('2026'));
+  return `<div class="panel"><div class="ph"><h3>급여 · 노무비 (월·현장 합계)</h3><small>상용 급여 누계 ${wonp(sum(pay,x=>x[1]))} · 개인별 금액은 넣지 않음</small></div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;padding:12px 18px">${p26.map(x=>`<div style="border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px"><span style="color:var(--sub)">${x[0]} 상용</span> <b style="font-weight:500">${wonp(x[1])}</b></div>`).join('')}
+  ${il.map(x=>`<div style="border:1px solid #f1deb0;background:#fffaf0;border-radius:8px;padding:6px 10px;font-size:12.5px"><span style="color:var(--sub)">${x[0]} 일용</span> <b style="font-weight:500">${wonp(x[1])}</b></div>`).join('')}</div>
+  <div class="src">2026년 월만 표시. ${pay.length-p26.length?'이전 연도 '+(pay.length-p26.length)+'개월 포함 누계는 위 숫자.':''}</div></div>`;
+}
+function siteUs(s){
+  const r=s.raw, hq=r.group==='본사';
+  const hd=r.하도급금액, bon=hd?r.계약-hd:null, d=days(s.end);
+  const g=r.gisung;
+  const ded=sum(g,x=>x.공제051);
+  return `<span class="back" onclick="go('list')">← 전체 현장</span>
+  <div class="top"><div><div class="date">${chips(s)} &nbsp;<span style="font-family:ui-monospace,Consolas,monospace">${esc(r.key)}</span></div><h1>${esc(r.공사명)}<small>${hq?'군산 본사 직영':'상무님 기성 정산'}</small></h1></div></div>
+  <div class="info"><div><small>계약번호</small><b>${esc(r.key)}</b></div><div><small>지역</small><b>${esc(r.region)}</b></div><div><small>공사기간 (정산서)</small><b>${r.기간?esc(r.기간):'<span class="need">확인필요</span>'}</b></div><div><small>준공기한</small><b>${s.end||'<span class="need">확인필요</span>'} ${d!=null&&s.stage<4?`<span class="chip ${d<0?'c-red':d<=60?'c-org':'c-me'}">${d<0?'지남':'D-'+d}</span>`:''}</b></div>
+  <div><small>계약금액</small><b>${won(r.계약)}</b></div><div><small>${hq?'정산 방식':'공사금액 (상무님 몫)'}</small><b>${hq?'본사 직영 (받은 돈 − 지출)':won(hd)}</b></div><div><small>${hq?'외자재 L/C':'본사 몫 · 요율 (정산서)'}</small><b>${hq?(r.LC?'$'+r.LC.toLocaleString():'없음'):(bon!=null?wonp(bon)+' · '+pct(r.요율):'<span class="need">확인필요</span>')}</b></div><div><small>외자재 L/C</small><b>${r.LC?'$'+Number(r.LC).toLocaleString()+' (USD)':'없음'}</b></div></div>
+  ${stepper(s.stage)}
+  ${r.note?`<div class="note">${esc(r.note)}</div>`:''}
+  <div class="flow">
+   <div class="fb"><h4><span class="n">1</span>계약</h4><div class="big">${won(r.계약)}</div>${hq?'':ln('공사금액(상무님)',hd)+ln('본사 몫',bon)}${ln('기성 청구누계',r.청구누계)}${ln('미청구 잔액',r.계약!=null?r.계약-r.청구누계:null)}</div><div class="arr">→</div>
+   <div class="fb"><h4><span class="n">2</span>받은 돈</h4><div class="big">${won(r.실입금)}</div>${ln('청구 합계',r.청구누계)}${ln('0.51% 조기지급 할인',ded)}${ln('입금 차수',g.filter(x=>x.실입금).length+'회',1)}${ln('미입금 청구',sum(g.filter(x=>!x.실입금),x=>x.청구))}</div><div class="arr">→</div>
+   <div class="fb"><h4><span class="n">3</span>나간 돈</h4><div class="big">${won(r.지출)}</div><div class="ln"><span>근거</span><b>${esc(r.지출근거)}</b></div>${(r.gongje||[]).map(([k,v])=>ln(k,v)).join('')}${r.tax?ln('홈택스 매입 2026(현장 지정)',r.tax.buy?r.tax.buy.tot:0)+ln('통장 출금 2026(현장 지정)',r.tax.bank?r.tax.bank.out:0):''}${r.외자재원화?ln('외자재 수수료 등(원화)',r.외자재원화):''}</div><div class="arr">→</div>
+   <div class="fb hl"><h4><span class="n">4</span>${hq?'정산 (받은 돈 − 지출)':'미집행'}</h4><div class="big">${s.mijip==null?`<span class="need" style="font-size:15px">${esc(s.mijipSrc)}</span>`:won(s.mijip)}</div>
+    <div class="ln"><span>근거</span><b>${esc(s.mijip==null?'지출결의서 없음':s.mijipSrc)}</b></div>
+    ${hq?'':'<div class="ln"><span>정산 방식</span><b>인보이스 → 입금 → 상무님 기성 → 확인·결재 → 준공 때 마무리</b></div>'}</div>
+  </div>
+  <div class="panel"><div class="ph"><h3>기성 청구 · 입금</h3><small>미군현장 통합관리 기성입금 + 이후 정산서·통장</small></div>
+   <table><thead><tr><th>차수</th><th>인보이스</th><th class="n">청구</th><th class="n">0.51% 할인(실제)</th><th class="n">실입금</th><th>입금일</th><th>통장</th><th>메모</th></tr></thead><tbody>
+   ${g.length?g.map(x=>`<tr><td>${esc(x.차수)}${x.준공?' <span class="chip c-org">준공</span>':''}</td><td>${x.인보이스||''}</td><td class="n">${wonp(x.청구)}</td><td class="n">${x.공제051?wonp(x.공제051):'-'}</td><td class="n">${x.실입금?wonp(x.실입금):'<span class="need">미입금</span>'}</td><td>${x.입금일||''}</td><td>${x.실입금?(x.통장?'<span class="ok">일치</span>':'<span class="need">확인필요</span>'):''}</td><td><small>${esc(x.비고||'')}${x.지연이자?' · 지연이자 '+wonp(x.지연이자)+'(본사 몫)':''}</small></td></tr>`).join(''):'<tr><td colspan="8" class="empty">기성 청구 없음</td></tr>'}
+   </tbody></table></div>
+  ${r.sal.length?`<div class="panel"><div class="ph"><h3>급여 정산 (월·현장 합계)</h3><small>미군현장 통합관리 급여배분 (10/27 기준)</small></div><table><thead><tr><th>월</th><th>구분</th><th class="n">급여총액</th></tr></thead><tbody>${r.sal.map(x=>`<tr><td>${x[0]}</td><td>${esc(x[1])}</td><td class="n">${wonp(x[2])}</td></tr>`).join('')}</tbody></table></div>`:''}
+  ${r.fx.length?`<div class="panel"><div class="ph"><h3>외자재 (L/C 신용장 · B/L 선하증권 · 통관)</h3><small>외자재 신용장 개설 List 기준</small></div><table><thead><tr><th>구분</th><th>날짜</th><th>내용</th><th class="n">USD</th><th class="n">원화</th><th>반영 차수</th></tr></thead><tbody>${r.fx.map(x=>`<tr><td>${esc(x[1])}</td><td>${x[2]||''}</td><td>${esc(x[3])}</td><td class="n">${x[4]?Number(x[4]).toLocaleString():''}</td><td class="n">${x[7]?wonp(x[7]):(x[6]?wonp(x[6]):'')}</td><td>${esc(x[8]||'')}</td></tr>`).join('')}</tbody></table></div>`:''}`;
+}
+
+// ---------- 돈 흐름 대조
+function flow(){
+  const dom=SITES.filter(s=>s.type==='국내'&&s.stage>1);
+  const us=SITES.filter(s=>s.type==='미군'&&s.recv>0);
+  return `<div class="top"><div><h1>돈 흐름 대조<small>통합관리 · 하도급지킴이 · 홈택스 · 통장을 현장별로 맞춰 봄</small></h1></div></div>
+  <div class="note g">같은 현장의 금액을 출처별로 나란히 놓은 표입니다. 차이가 있으면 직불(하도급사로 바로 나감), 공동도급 다른 회사 몫, 아직 현장이 안 붙은 계산서 때문인 경우가 많습니다.</div>
+  <div class="panel"><div class="ph"><h3>국내 — 받은 돈</h3><small>VAT 포함</small></div><table><thead><tr><th>현장</th><th class="n">청구대장 합계</th><th class="n">홈택스 매출</th><th class="n">지킴이 청구누계</th><th class="n">하도급 직불</th><th class="n">당사 계좌 입금(청구−직불)</th><th class="n">통장 입금(현장 지정)</th><th>판단</th></tr></thead><tbody>
+  ${dom.map(s=>{const r=s.raw,t=r.tax||{};const ht=t.sell?t.sell.tot:0;const jk=sum(r.jik,j=>j.청구누계);const own=r.청구누계-(r.직불||0);
+   const okS=Math.abs(ht-r.청구누계)<1;
+   return `<tr class="cl" onclick="openSite('${s.id}')"><td>${esc(s.short)}</td><td class="n">${wonp(r.청구누계)}</td><td class="n">${wonp(ht)} ${okS?'<small class="ok">일치</small>':`<small class="ng">차이 ${wonp(ht-r.청구누계)}</small>`}</td><td class="n">${r.jik.length?wonp(jk):'-'}<small>${r.jik.map(j=>j.이름).join('·')||''}</small></td><td class="n">${wonp(r.직불)}</td><td class="n">${wonp(own)}</td><td class="n">${wonp(t.bank?t.bank.in:0)}</td><td><small>${okS?'청구대장 = 홈택스':'홈택스와 다름'}${r.jik.length&&Math.abs(jk-r.청구누계)>1?' · 지킴이는 현재·직전 차수만 집계':''}</small></td></tr>`}).join('')}
+  </tbody></table></div>
+  <div class="panel"><div class="ph"><h3>국내 — 나간 돈</h3><small>VAT 포함</small></div><table><thead><tr><th>현장</th><th class="n">결의서 집행누계</th><th class="n">홈택스 매입(현장 지정)</th><th class="n">매입 중 지급일 확인</th><th class="n">통장 출금(현장 지정)</th><th class="n">상용 급여 누계</th><th class="n">미집행</th></tr></thead><tbody>
+  ${dom.map(s=>{const r=s.raw,t=r.tax||{};return `<tr class="cl" onclick="openSite('${s.id}')"><td>${esc(s.short)}</td><td class="n">${won(r.결의집행)}</td><td class="n">${wonp(t.buy?t.buy.tot:0)}</td><td class="n">${wonp(t.buy?t.buy.paid:0)}</td><td class="n">${wonp(t.bank?t.bank.out:0)}</td><td class="n">${wonp(r.상용급여)}</td><td class="n">${won(r.미집행)}<small>${esc(s.mijipSrc)}</small></td></tr>`}).join('')}
+  </tbody></table></div>
+  <div class="panel"><div class="ph"><h3>미군 — 받은 돈 · 나간 돈</h3><small>받은 돈 있는 현장</small></div><table><thead><tr><th>현장</th><th class="n">기성 청구</th><th class="n">실입금</th><th>통장 일치</th><th class="n">정산서 지출(공제)</th><th class="n">홈택스 매입 2026</th><th class="n">통장 출금 2026</th><th class="n">미집행</th></tr></thead><tbody>
+  ${us.map(s=>{const r=s.raw;const paid=r.gisung.filter(x=>x.실입금);const okc=paid.filter(x=>x.통장).length;return `<tr class="cl" onclick="openSite('${s.id}')"><td>${esc(s.short)}<small>${esc(r.region)}</small></td><td class="n">${wonp(r.청구누계)}</td><td class="n">${wonp(r.실입금)}</td><td>${okc===paid.length?`<span class="ok">${okc}/${paid.length}</span>`:`<span class="need">${okc}/${paid.length}</span>`}</td><td class="n">${won(r.지출)}</td><td class="n">${r.tax&&r.tax.buy?wonp(r.tax.buy.tot):'-'}</td><td class="n">${r.tax&&r.tax.bank?wonp(r.tax.bank.out):'-'}</td><td class="n">${mijCell(s)}</td></tr>`}).join('')}
+  </tbody></table><div class="src">통장 일치 = 기성 실입금(또는 실입금+지연이자)과 같은 금액의 "미군 입금"이 2026년 통장에 있음. 통장 대장은 11/18 거래까지.</div></div>`;
+}
+
+// ---------- 확인할 것
+function buildChecks(){
+  // 확인할 것 목록: 데이터(DATA.checks)와 하도급지킴이 '확인할 것'(DATA.jchk)에서 만든다.
+  const c=(DATA.checks||[]).map(x=>({kind:'확인할 것',...x}));
+  (DATA.jchk||[]).forEach(j=>{ if(j.상태==='미확인') c.push({where:'하도급지킴이 '+j.현장,what:j.내용+' → '+j.할일,site:j.site||null,kind:'확인할 것'}); });
+  return c;
+}
+function check(){
+  const groups={}; CHECKS.forEach(x=>{(groups[x.kind]=groups[x.kind]||[]).push(x)});
+  return `<div class="top"><div><h1>확인할 것<small>원자료끼리 안 맞거나 원자료가 없는 것 ${CHECKS.length}건</small></h1></div></div>
+  ${Object.entries(groups).map(([k,a])=>`<div class="panel"><div class="ph"><h3>${k} <span class="chip ${k==='고칠 것'?'c-red':'c-org'}">${a.length}</span></h3></div>${a.map(x=>`<div class="row" ${x.site?`onclick="openSite('${x.site}')"`:''}><div class="m"><div class="t">${esc(x.where)}</div><div class="s" style="white-space:normal">${esc(x.what)}</div></div>${x.site?'<span style="color:var(--sub)">→</span>':''}</div>`).join('')}</div>`).join('')}`;
+}
+function guide(){
+  const G=[
+   ['계약','현장 하나의 출발점',['국내: 현장마스터 총공사(부기)금액 × 당사 지분 = 당사 몫 (공동도급은 지분만큼)','미군: 정산서 계약금액. 상무님 현장은 공사금액(하도급금액) = 계약금액 ÷ (1+요율), 본사 몫 = 계약 − 공사금액','미청구 잔액 = 계약(당사 몫) − 청구 누계']],
+   ['받은 돈','선금 · 기성 · 노무비 · 준공금',['국내: 발주처 청구(세금계산서, VAT 포함) 합계. 하도급 직불은 하도급사로 바로 나가 당사 통장에는 안 들어옴','미군: 인보이스 청구 → 실입금. 0.51%는 인보이스의 조기지급 할인 조건이라, 미군이 인보이스를 받고 10일 안에 지급할 때만 빠지고 늦으면 전액 입금. 할인 조건이 없는 인보이스도 있음. 지연이자는 본사 몫이라 따로 표시','통장 대조: 세금계산서·통장 통합대장의 은행거래내역(11/18까지)']],
+   ['나간 돈','하도급 · 자재 · 급여 · 수수료',['국내: 최근 지출결의서 당월까지 집행금액 + 홈택스 매입(현장 지정분) + 통장 출금','미군(상무님): 정산서 공제(원도급 지급자재 · 직원급료 · 임금)','군산(본사): 지출결의서 합계. 급여는 월·현장 합계만 표시']],
+   ['정산 · 미집행','남은 돈',['국내: 최근 지출결의서 미집행(총기성 − 집행). 현장별 통합정산(홈택스 기준) 파일이 있는 현장은 그 값, 없으면 통합정산 준비 중','미군(상무님): 인보이스 → 입금 → 상무님 기성 올림 → 확인·결재 → 준공하면 끝. 준공 전에는 남은 돈이 다음 차수로 넘어감. 값은 상무님 기성 지출결의서 미집행만 씀','결의서가 없으면 "상무님 기성 정산 전"(받은 돈 있음) 또는 "기성 전"(받은 돈 없음)']],
+  ];
+  return `<div class="top"><div><h1>보는 법 · 기준<small>숫자가 어디서 왔는지</small></h1></div></div>
+  ${G.map((g,i)=>`<div class="gs"><div class="num">${i+1}</div><div><h3>${g[0]}</h3><p class="d">${g[1]}</p><ul>${g[2].map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div>`).join('')}
+  <div class="panel"><div class="ph"><h3>원자료 (읽기만, 원본 수정 없음)</h3><small>${DATA.asof} 기준</small></div><table><tbody>
+   <tr><td>국내공사 현장통합관리</td><td>현장마스터 · 현장현황 · 청구대장 · 급여배분 · 하도급사</td></tr>
+   <tr><td>하도급지킴이 관리</td><td>현장별 요약 · 하도급계약 · 확인할 것</td></tr>
+   <tr><td>세금계산서·통장 통합대장</td><td>매입 · 매출 · 통장 (홈택스 승인번호 기준)</td></tr>
+   <tr><td>현장별 통합정산</td><td>현장별 월 정산 파일 (홈택스 기준)</td></tr>
+   <tr><td>4. 인보이스 폴더</td><td>2026년도 공사대장\\4. 인보이스 파일명(차수·금액·0.51% 공제·"입금" 표시)</td></tr>
+   <tr><td>미군현장 통합관리 v3</td><td>10/27 저장본 — 현장목록 · 기성입금 · 급여배분 · 외자재</td></tr>
+   <tr><td>공유폴더 정산서</td><td>동두천·파주·성남 / 미군부대(수원·평택·오산) 정산서 앞장</td></tr>
+   <tr><td>지출결의서</td><td>공사대장 미군부대 지역 폴더의 현장별 지출결의서, 상무님 정산용 파일</td></tr>
+  </tbody></table><div class="src">계좌번호 · 주민번호 · 개인별 급여는 넣지 않음. 준공 정산이 끝난 현장은 목록에서 뺌.</div></div>`;
+}
+function render(keepFocus){
+  nav();
+  const f={dash,board,list,site,flow,check,guide}[state.page]||dash;
+  const act=document.activeElement, pos=act&&act.classList.contains('search')?act.selectionStart:null;
+  $('#app').innerHTML=f();
+  if(keepFocus&&pos!=null){const i=document.querySelector('input.search'); if(i){i.focus(); i.setSelectionRange(pos,pos);}}
+}
+function fromHash(){ const h=(location.hash||'').slice(1); if(PAGES.some(p=>p[0]===h)){state.page=h;} render(); }
+window.addEventListener('hashchange',()=>{ if(state.page!=='site') fromHash(); });
+fromHash();
+</script>
+</body>
+</html>
